@@ -3,77 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eid Mubarak Zerith</title>
+<title>Eid Mubarak</title>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui;
+}
+
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #0f2027, #2c5364);
-    color: white;
-    text-align: center;
-    overflow-x: hidden;
+  height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }
 
 .container {
-    padding: 30px;
+  width: 90%;
+  max-width: 350px;
+  text-align: center;
 }
 
 h1 {
-    font-size: 2.5rem;
-    margin-top: 50px;
-    animation: glow 2s infinite alternate;
+  font-size: 28px;
+  margin-bottom: 10px;
 }
 
-@keyframes glow {
-    from { text-shadow: 0 0 10px #00ffcc; }
-    to { text-shadow: 0 0 30px #00ffcc, 0 0 60px #00ffcc; }
+p {
+  font-size: 14px;
+  opacity: 0.8;
 }
 
-button {
-    padding: 15px 25px;
-    font-size: 18px;
-    border: none;
-    border-radius: 10px;
-    margin-top: 20px;
-    cursor: pointer;
-    background: #00ffcc;
-    color: black;
-    transition: 0.3s;
+.btn {
+  margin-top: 20px;
+  padding: 14px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  background: #00ffcc;
+  color: black;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-button:hover {
-    background: #00ccaa;
-    transform: scale(1.05);
+.btn:active {
+  transform: scale(0.95);
 }
 
 .card {
-    margin-top: 30px;
-    padding: 20px;
-    border-radius: 15px;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    display: none;
-    animation: fadeIn 1s ease-in-out;
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.08);
+  display: none;
+  animation: pop 0.4s ease;
 }
 
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
+@keyframes pop {
+  from {transform: scale(0.8); opacity: 0;}
+  to {transform: scale(1); opacity: 1;}
 }
 
-.money {
-    font-size: 22px;
-    margin-top: 15px;
-    color: #00ffcc;
-    font-weight: bold;
+.salami {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #00ffcc;
 }
 
-.footer {
-    margin-top: 50px;
-    font-size: 14px;
-    opacity: 0.7;
+.bkash {
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 0.9;
 }
 </style>
 
@@ -82,40 +87,34 @@ button:hover {
 
 <div class="container">
 
-<h1>🌙 Eid Mubarak 🎉</h1>
+<h1>🌙 Eid Mubarak</h1>
+<p>Tap below 👇</p>
 
-<p>Click below to receive your Eid greeting 😌</p>
+<button class="btn" onclick="openCard()">Open</button>
 
-<button onclick="showGreeting()">Open Greeting</button>
+<div class="card" id="card">
+  <h2>✨ Eid Mubarak Zerith</h2>
+  <p>Allah tomar shob iccha puron koruk 🤲</p>
 
-<div class="card" id="greetingCard">
-    <h2>✨ Eid Mubarak from Zerith ✨</h2>
-    <p>Allah tomar shob iccha puron koruk 🤲  
-    Shukhe thako, bhalo thako ❤️</p>
+  <div class="salami">💸 Salami dite hobe 😏</div>
 
-    <div class="money">
-        💸 Ebar Salami Dao 😆
-    </div>
+  <button class="btn" onclick="copyNumber()">Send bKash</button>
 
-    <button onclick="askSalami()">Send Salami</button>
-
-    <p id="salamiMsg"></p>
-</div>
-
-<div class="footer">
-    Made with ❤️ by Zerith
+  <div class="bkash" id="number"></div>
 </div>
 
 </div>
 
 <script>
-function showGreeting() {
-    document.getElementById("greetingCard").style.display = "block";
+function openCard() {
+  document.getElementById("card").style.display = "block";
 }
 
-function askSalami() {
-    document.getElementById("salamiMsg").innerHTML =
-        "😎 Bkash / Nagad e pathao... na hole next Eid e blocked!";
+function copyNumber() {
+  const num = "01953275450";
+  navigator.clipboard.writeText(num);
+  document.getElementById("number").innerHTML =
+    "Number Copied ✅ " + num;
 }
 </script>
 
